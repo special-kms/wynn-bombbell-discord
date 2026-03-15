@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "bombbelldiscord",
+  "version": "${version}",
+  "name": "Bombbell Discord Export",
+  "description": "Exports Wynncraft Bomb Bell detections to a Discord-ready clipboard message.",
+  "authors": [
+    "808MELO"
+  ],
+  "contact": {},
+  "icon": "assets/bombbelldiscord/icon.png",
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.wynncraft.bombbelldiscord.BombbellDiscordClient"
+    ]
+  },
+  "mixins": [
+    "bombbelldiscord.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11",
+    "java": ">=21"
+  }
+}
