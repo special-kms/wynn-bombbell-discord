@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.0
+
+- Added GitHub `sources` and `issues` links to the mod metadata for launcher and repository discovery.
+- Bumped the packaged release to `0.5.0`.
+
 ## 0.3.0
 
 - Added `outputStyle` config support with `grouped` and `flat` modes.

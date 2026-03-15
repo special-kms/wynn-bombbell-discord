@@ -7,7 +7,10 @@
   "authors": [
     "808MELO"
   ],
-  "contact": {},
+  "contact": {
+    "sources": "https://github.com/special-kms/wynn-bombbell-discord",
+    "issues": "https://github.com/special-kms/wynn-bombbell-discord/issues"
+  },
   "icon": "assets/bombbelldiscord/icon.png",
   "license": "MIT",
   "environment": "client",
