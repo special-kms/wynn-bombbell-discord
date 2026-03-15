@@ -187,33 +187,6 @@ build/libs/
 
 Version history lives in [CHANGELOG.md](CHANGELOG.md).
 
-## 🖼 Icon
-
-The loader icon is read from:
-
-```text
-src/main/resources/assets/bombbelldiscord/icon.png
-```
-
-To replace it, keep the file name the same and use a square PNG.  
-`128x128` is a good size.
-
-## 🔗 Project Metadata
-
-The mod metadata lives in:
-
-```text
-src/main/resources/fabric.mod.json
-```
-
-That file controls things like:
-
-- mod name
-- version
-- author
-- icon
-- contact links
-
 ## ❤️ Notes
 
 - This is a clipboard exporter, not a Discord bot.
