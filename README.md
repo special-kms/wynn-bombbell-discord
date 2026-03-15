@@ -1,40 +1,20 @@
-# Bombbell Discord Export
+# Bomb Bell Copier
 
-Client-side Fabric mod for Minecraft Java Edition Fabric `1.21.11` that runs `/bombbell`, reads the live Wynncraft bomb list from chat, and copies a Discord-ready message to your clipboard.
+> A Fabric `1.21.11` client mod for Wynncraft that runs `/bombbell` and turns active bombs into a Discord-ready message.
 
-## What the mod does
+## ✨ What It Does
 
-- Runs `/bombbell` for you when you use `/bombcopy` or a configured hotkey.
-- Reads the active bombs directly from the live chat response.
-- Maps bomb types to Discord role mentions like `<@&123456789012345678>`.
-- Copies the result to your clipboard in either `grouped` or `flat` format.
-- Includes remaining time like `NA15 [19m 58s]` by default.
+Bomb Bell Copier is built for people who want to quickly move Wynncraft bomb info into Discord without manually retyping servers, timers, or role pings.
 
-## First-time setup
+- Runs `/bombbell` for you
+- Reads the live active bomb list from chat
+- Matches bomb types to Discord role IDs
+- Copies a clean message straight to your clipboard
+- Supports both grouped and flat output styles
 
-1. Put the jar in your profile `mods` folder.
-2. Launch the game once, then close it.
-3. Open `config/bombbelldiscord.json`.
-4. Fill in `roleMappings` with your Discord role IDs.
-5. Leave `outputStyle` as `grouped` unless you prefer one line per entry.
-6. If you want a hotkey, change `exportKey` to something like `key.keyboard.f6`.
-7. Launch the game again and use `/bombcopy`.
-
-## How to use it
-
-1. Join Wynncraft.
-2. Make sure your `roleMappings` are set in the config.
-3. Type `/bombcopy` in chat.
-4. The mod runs `/bombbell`, waits for the live response, and copies the formatted result to your clipboard.
-5. Paste the clipboard contents into Discord.
-
-If you set a hotkey in config, that key does the same thing as `/bombcopy`.
-
-## Output formats
+## 🧾 Example Output
 
 ### `grouped` (default)
-
-Tags each role once, then lists matching servers underneath it.
 
 ```text
 <@&515987791230795807>
@@ -48,16 +28,40 @@ EU1 [12m 40s]
 
 ### `flat`
 
-Outputs one line per bomb entry.
-
 ```text
 <@&515987791230795807> AS1 [16m 58s]
 <@&1403678665056849963> EU1 [12m 40s]
 ```
 
-## Config reference
+## 🚀 Quick Start
 
-The mod creates `config/bombbelldiscord.json` on first launch.
+1. Put the mod jar into your Minecraft profile's `mods` folder.
+2. Launch the game once, then close it.
+3. Open `config/bombbelldiscord.json`.
+4. Add your Discord role IDs under `roleMappings`.
+5. Launch Wynncraft and type `/bombcopy`.
+6. Paste the copied result into Discord.
+
+That is enough to get started.
+
+## 🛠 Setup For First-Time Users
+
+### 1. Install the mod
+
+Place the jar in your Fabric `mods` folder.
+
+### 2. Generate the config
+
+Start Minecraft once with the mod installed, then close the game.  
+This creates:
+
+```text
+config/bombbelldiscord.json
+```
+
+### 3. Add your role IDs
+
+Open the config and fill in the role IDs you want pinged.
 
 Example:
 
@@ -79,46 +83,139 @@ Example:
 }
 ```
 
-Field notes:
+### 4. Use the command
 
-- `includeUnmappedBombs`: if `false`, only bombs with configured role IDs are exported.
-- `showRemainingTime`: if `true`, adds `[time left]` after each server.
-- `outputStyle`: use `grouped` or `flat`.
-- `exportKey`: keyboard or mouse translation key. Examples: `key.keyboard.f6`, `key.keyboard.b`, `key.mouse.middle`. Leave `key.keyboard.unknown` for no hotkey.
-- `roleMappings`: bomb name to Discord role ID map.
-- `commandTimeoutMs`: how long to wait for `/bombbell` before giving up.
-- `quietPeriodMs`: how long to wait after the last relevant line before finalizing the export.
-- `noBombsMessage`: copied to clipboard when Wynncraft reports no active bombs.
+In Wynncraft, type:
 
-## Supported bomb-name matching
+```text
+/bombcopy
+```
 
-The mod normalizes common bomb names automatically. For example:
+The mod will:
 
-- `Loot`, `Chest Loot`, and `Loot Chest Bomb` all resolve to the same loot-chest role key.
-- `Combat XP`, `Profession XP`, and `Profession Speed` are normalized for config matching.
+1. run `/bombbell`
+2. wait for the live chat response
+3. format the active bombs
+4. copy the finished message to your clipboard
 
-## Building
+## 🎮 How To Use It
+
+### Option 1: Command
+
+Use:
+
+```text
+/bombcopy
+```
+
+This is the main and recommended way to use the mod.
+
+### Option 2: Hotkey
+
+The mod ships with no default hotkey bound.  
+If you want one, set `exportKey` in the config.
+
+Examples:
+
+- `key.keyboard.f6`
+- `key.keyboard.b`
+- `key.mouse.middle`
+
+Leave it as `key.keyboard.unknown` if you only want to use `/bombcopy`.
+
+## ⚙ Config Guide
+
+### Main settings
+
+- `includeUnmappedBombs`
+  If `false`, only bombs with configured role IDs will be exported.
+- `showRemainingTime`
+  If `true`, each server line includes `[time left]`.
+- `outputStyle`
+  Use `grouped` or `flat`.
+- `exportKey`
+  Translation key for the optional hotkey.
+- `roleMappings`
+  Maps bomb names to Discord role IDs.
+- `commandTimeoutMs`
+  How long the mod waits for `/bombbell` before giving up.
+- `quietPeriodMs`
+  How long the mod waits after the last relevant bomb line before finalizing the export.
+- `noBombsMessage`
+  What gets copied if Wynncraft reports no active bombs.
+
+### Recommended public-use defaults
+
+- `includeUnmappedBombs: false`
+- `showRemainingTime: true`
+- `outputStyle: "grouped"`
+- `exportKey: "key.keyboard.unknown"`
+
+## 🧠 Bomb Name Matching
+
+The mod normalizes common bomb names automatically.
+
+Examples:
+
+- `Loot`
+- `Chest Loot`
+- `Loot Chest Bomb`
+
+These all resolve to the same loot-chest mapping key.
+
+It also normalizes names like:
+
+- `Combat XP`
+- `Profession XP`
+- `Profession Speed`
+
+## 📦 Building
+
+To build the mod yourself:
 
 ```powershell
 .\gradlew.bat clean test build
 ```
 
-The release jar will be placed in `build/libs/`.
+The built jar will be placed in:
 
-## Release notes
+```text
+build/libs/
+```
 
-See [CHANGELOG.md](CHANGELOG.md) for version history.
+## 📝 Changelog
 
-## Icon metadata
+Version history lives in [CHANGELOG.md](CHANGELOG.md).
 
-The mod icon is loaded from `src/main/resources/assets/bombbelldiscord/icon.png` via `fabric.mod.json`. To replace it, keep the file name the same and use a square PNG, ideally `128x128`.
+## 🖼 Icon
 
-## Contact metadata
+The loader icon is read from:
 
-Before publishing, add your real project links to the `contact` section in `fabric.mod.json`.
+```text
+src/main/resources/assets/bombbelldiscord/icon.png
+```
 
-Recommended fields:
+To replace it, keep the file name the same and use a square PNG.  
+`128x128` is a good size.
 
-- `issues`: your bug-report tracker
-- `sources`: your repository
-- `homepage`: optional project page
+## 🔗 Project Metadata
+
+The mod metadata lives in:
+
+```text
+src/main/resources/fabric.mod.json
+```
+
+That file controls things like:
+
+- mod name
+- version
+- author
+- icon
+- contact links
+
+## ❤️ Notes
+
+- This is a clipboard exporter, not a Discord bot.
+- It does not post directly to Discord.
+- It uses live `/bombbell` chat output as the source of truth for active bombs.
